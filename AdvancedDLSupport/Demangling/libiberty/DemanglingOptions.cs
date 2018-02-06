@@ -1,5 +1,5 @@
 ﻿//
-//  DemanglingStyles.cs
+//  DemanglingOptions.cs
 //
 //  Copyright (c) 2018 Firwood Software
 //
@@ -20,24 +20,22 @@
 // ReSharper disable UnusedMember.Global
 #pragma warning disable 1591, SA1602
 
+using System;
+
 namespace AdvancedDLSupport.Demangling
 {
     /// <summary>
-    /// Demangling styles used for demangling symbols. Can be combined with <see cref="DemanglingOptions"/>.
+    /// Demangling options. Can be combined with <see cref="DemanglingStyles"/>.
     /// </summary>
-    public enum DemanglingStyles
+    [Flags]
+    public enum DemanglingOptions
     {
-        None = -1,
-        Unknown = 0,
-        Auto = 1 << 8,
-        GNU = 1 << 9,
-        Lucid = 1 << 10,
-        Arm = 1 << 1,
-        HP = 1 << 12,
-        EDG = 1 << 13,
-        GNUv3 = 1 << 14,
-        Java = 1 << 2,
-        GNAT = 1 << 15,
-        DLang = 1 << 16
+        None = 0,
+        IncludeFunctionParameters = 1 << 0,
+        IncludeANSI = 1 << 1,
+        Verbose = 1 << 3,
+        IncludeTypes = 1 << 4,
+        PostfixReturnTypes = 1 << 5,
+        DropReturnTypes = 1 << 6
     }
 }
