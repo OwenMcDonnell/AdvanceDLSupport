@@ -29,8 +29,9 @@ add_library(FunctionTests SHARED src/FunctionTests.c ${SHARED_HEADERS})
 add_library(LazyLoadingTests SHARED src/LazyLoadingTests.c ${SHARED_HEADERS})
 add_library(PropertyTests SHARED src/PropertyTests.c ${SHARED_HEADERS})
 add_library(RemappingTests SHARED src/RemappingTests.c ${SHARED_HEADERS})
-add_library(ComplexTypeTests SHARED src/ComplexTypeTests.c ${SHARED_HEADERS})
+add_library(TypeLoweringTests SHARED src/TypeLoweringTests.c ${SHARED_HEADERS})
 add_library(MixedModeTests SHARED src/MixedModeTests.c ${SHARED_HEADERS})
+add_library(NullableTests SHARED src/NullableTests.c ${SHARED_HEADERS})
 
 get_filename_component(INSTALL_PATH_ABSOLUTE "${PROJECT_PATH}/${OUTPUT_PATH}" ABSOLUTE)
 
@@ -42,7 +43,8 @@ install(TARGETS
             LazyLoadingTests
             PropertyTests
             RemappingTests
-            ComplexTypeTests
+            TypeLoweringTests
             MixedModeTests
+            NullableTests
         DESTINATION
             ${INSTALL_PATH_ABSOLUTE})

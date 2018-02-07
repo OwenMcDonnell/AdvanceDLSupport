@@ -4,15 +4,12 @@
 
 namespace AdvancedDLSupport.Tests.Data
 {
-    public interface IComplexTypeLibrary
+    public interface ITypeLoweringLibrary
     {
         string GetString();
         string GetNullString();
 
         bool CheckIfStringIsNull(string value);
         UIntPtr StringLength(string value);
-        TestStruct? GetAllocatedTestStruct();
-        TestStruct? GetNullTestStruct();
-        bool CheckIfStructIsNull(TestStruct? testStruct);
     }
 }
