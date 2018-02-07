@@ -26,6 +26,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using AdvancedDLSupport.Extensions;
 using AdvancedDLSupport.ImplementationGenerators;
+using AdvancedDLSupport.Reflection;
 using JetBrains.Annotations;
 using Mono.DllMap;
 using Mono.DllMap.Extensions;
@@ -300,7 +301,7 @@ namespace AdvancedDLSupport
 
             var refPermutationGenerator = new RefPermutationImplementationGenerator(ModuleBuilder, typeBuilder, constructorIL, Options, TransformerRepository);
 
-            foreach (var method in typeof(TInterface).GetMethods())
+            foreach (var method in typeof(TInterface).GetIntrospectiveMethods())
             {
                 var targetMethod = method;
 
@@ -311,7 +312,7 @@ namespace AdvancedDLSupport
                 }
 
                 // Skip methods with a managed implementation in the base class
-                var baseClassMethod = typeof(TBaseClass).GetMethod(method.Name, method.GetParameters().Select(p => p.ParameterType).ToArray());
+                var baseClassMethod = typeof(TBaseClass).GetIntrospectiveMethod(method.Name, method.ParameterTypes.ToArray());
                 if (!(baseClassMethod is null))
                 {
                     if (!baseClassMethod.IsAbstract)
@@ -381,7 +382,7 @@ namespace AdvancedDLSupport
                     targetProperty = baseClassProperty;
                 }
 
-                propertyGenerator.GenerateImplementation(targetProperty);
+                propertyGenerator.GenerateImplementation(new IntrospectivePropertyInfo(targetProperty));
             }
         }
     }

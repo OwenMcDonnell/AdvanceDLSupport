@@ -53,21 +53,21 @@
       <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor" />
     </parameter>
   </member>
-  <member name="M:AdvancedDLSupport.Extensions.MethodInfoExtensions.ParametersRequireLowering(System.Reflection.MethodBase)">
+  <member name="M:AdvancedDLSupport.Extensions.MethodInfoExtensions.ParametersRequireLowering(AdvancedDLSupport.Reflection.IntrospectiveMethodInfo)">
     <attribute ctor="M:JetBrains.Annotations.PublicAPIAttribute.#ctor" />
     <attribute ctor="M:JetBrains.Annotations.PureAttribute.#ctor" />
     <parameter name="this">
       <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor" />
     </parameter>
   </member>
-  <member name="M:AdvancedDLSupport.Extensions.MethodInfoExtensions.RequiresLowering(System.Reflection.MethodInfo)">
+  <member name="M:AdvancedDLSupport.Extensions.MethodInfoExtensions.RequiresLowering(AdvancedDLSupport.Reflection.IntrospectiveMethodInfo)">
     <attribute ctor="M:JetBrains.Annotations.PublicAPIAttribute.#ctor" />
     <attribute ctor="M:JetBrains.Annotations.PureAttribute.#ctor" />
     <parameter name="this">
       <attribute ctor="M:JetBrains.Annotations.NotNullAttribute.#ctor" />
     </parameter>
   </member>
-  <member name="M:AdvancedDLSupport.Extensions.MethodInfoExtensions.ReturnValueRequiresLowering(System.Reflection.MethodInfo)">
+  <member name="M:AdvancedDLSupport.Extensions.MethodInfoExtensions.ReturnValueRequiresLowering(AdvancedDLSupport.Reflection.IntrospectiveMethodInfo)">
     <attribute ctor="M:JetBrains.Annotations.PublicAPIAttribute.#ctor" />
     <attribute ctor="M:JetBrains.Annotations.PureAttribute.#ctor" />
     <parameter name="this">
