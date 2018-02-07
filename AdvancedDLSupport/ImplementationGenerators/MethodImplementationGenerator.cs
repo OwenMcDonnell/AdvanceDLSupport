@@ -124,38 +124,16 @@ namespace AdvancedDLSupport.ImplementationGenerators
         /// <returns>The generated invoker.</returns>
         protected IntrospectiveMethodInfo GenerateDelegateInvokerDefinition([NotNull] IntrospectiveMethodInfo method)
         {
-            return GenerateDelegateInvokerDefinition
+            var methodBuilder = TargetType.DefineMethod
             (
                 method.Name,
+                Public | Final | Virtual | HideBySig | NewSlot,
+                Standard,
                 method.ReturnType,
                 method.ParameterTypes.ToArray()
             );
-        }
 
-        /// <summary>
-        /// Generates a method that invokes the method's delegate.
-        /// </summary>
-        /// <param name="methodName">The name of the method.</param>
-        /// <param name="returnType">The return type of the method.</param>
-        /// <param name="parameterTypes">The parameter types of the method.</param>
-        /// <returns>The generated invoker.</returns>
-        protected IntrospectiveMethodInfo GenerateDelegateInvokerDefinition
-        (
-            [NotNull] string methodName,
-            [NotNull] Type returnType,
-            [NotNull] Type[] parameterTypes
-        )
-        {
-            var methodBuilder = TargetType.DefineMethod
-            (
-                methodName,
-                Public | Final | Virtual | HideBySig | NewSlot,
-                Standard,
-                returnType,
-                parameterTypes
-            );
-
-            return new IntrospectiveMethodInfo(methodBuilder, returnType, parameterTypes);
+            return new IntrospectiveMethodInfo(methodBuilder, method.ReturnType, method.ParameterTypes);
         }
 
         /// <summary>
