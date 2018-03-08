@@ -29,12 +29,12 @@ if "%TEMP_PLATFORM%"=="x86" (
  -i=Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-mdl -x=coverage-mdl.xml^
  --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+
 ) else (
-	dotnet run^
+	"C:\Program Files\dotnet\dotnet.EXE" run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
  -i=AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-adl -x=coverage-adl.xml^
  --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+ --assemblyExcludeFilter=Mono\.DllMap.+
 
-	dotnet run^
+	"C:\Program Files\dotnet\dotnet.EXE" run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
  -i=Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-mdl -x=coverage-mdl.xml^
  --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+
@@ -57,12 +57,12 @@ if "%TEMP_PLATFORM%"=="x86" (
  runner -x "dotnet" -r "Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
  test Mono.DllMap.Tests --no-build
 ) else (
-	dotnet run^
+	"C:\Program Files\dotnet\dotnet.EXE" run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --no-build --configuration %CONFIGURATION% --^
  runner -x "dotnet" -r "AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
  test AdvancedDLSupport.Tests --no-build
 
-	dotnet run^
+	"C:\Program Files\dotnet\dotnet.EXE" run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --no-build --configuration %CONFIGURATION% --^
  runner -x "dotnet" -r "Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
  test Mono.DllMap.Tests --no-build
