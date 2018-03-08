@@ -14,7 +14,10 @@ platform:
 before_build:
   - dotnet restore
 build:
-
+  - ps: |
+      Write-Host $env:platform
+      $env:platform = ""
+  
   parallel: true
   project: AdvanceDLSupport.sln
 
