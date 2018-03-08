@@ -14,8 +14,9 @@ platform:
 before_build:
   - dotnet restore
   - ps: |
-      gci $env:platform
+      gci env:platform
       $env:platform = ""
+      gci env:platform
 build:
   
   
