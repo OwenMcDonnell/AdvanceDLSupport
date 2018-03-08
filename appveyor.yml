@@ -13,10 +13,7 @@ platform:
 
 before_build:
   - dotnet restore
-  - ps: |
-      write-output $env:platform
-      $env:platform = ""
-      write-output $env:platform
+  - ps: $env:platform = ""
 build:
   
   
