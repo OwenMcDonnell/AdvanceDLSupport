@@ -16,29 +16,57 @@ set PLATFORM=
 :: Install AltCover
 nuget install altcover -OutputDirectory altcover -Version 1.6.230
 
-set PLATFORM=%TEMP_PLATFORM
+
 :: Instrument the test assemblies
-dotnet run^
+if "%TEMP_PLATFORM%"=="x86" (
+	C:\Program Files (x86)\dotnet\dotnet.EXE run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
  -i=AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-adl -x=coverage-adl.xml^
  --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+ --assemblyExcludeFilter=Mono\.DllMap.+
 
-dotnet run^
+	C:\Program Files (x86)\dotnet\dotnet.EXE run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
  -i=Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-mdl -x=coverage-mdl.xml^
  --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+
+)
+else (
+	dotnet run^
+ --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
+ -i=AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-adl -x=coverage-adl.xml^
+ --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+ --assemblyExcludeFilter=Mono\.DllMap.+
+
+	dotnet run^
+ --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
+ -i=Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0 -o=instrumented-mdl -x=coverage-mdl.xml^
+ --assemblyExcludeFilter=.+\.Tests --assemblyExcludeFilter=AltCover.+
+
+)
 
 :: Copy them to their build directories
 copy /y instrumented-adl\* AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0
 copy /y instrumented-mdl\* Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0
 
 :: And run coverage
-dotnet run^
+if "%TEMP_PLATFORM%"=="x86" (
+	C:\Program Files (x86)\dotnet\dotnet.EXE run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --no-build --configuration %CONFIGURATION% --^
  runner -x "dotnet" -r "AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
  test AdvancedDLSupport.Tests --no-build
 
-dotnet run^
+	C:\Program Files (x86)\dotnet\dotnet.EXE run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --no-build --configuration %CONFIGURATION% --^
  runner -x "dotnet" -r "Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
  test Mono.DllMap.Tests --no-build
+)
+else (
+	dotnet run^
+ --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --no-build --configuration %CONFIGURATION% --^
+ runner -x "dotnet" -r "AdvancedDLSupport.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
+ test AdvancedDLSupport.Tests --no-build
+
+	dotnet run^
+ --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --no-build --configuration %CONFIGURATION% --^
+ runner -x "dotnet" -r "Mono.DllMap.Tests\bin\%OUTPUT_DIR%\netcoreapp2.0" --^
+ test Mono.DllMap.Tests --no-build
+
+)
