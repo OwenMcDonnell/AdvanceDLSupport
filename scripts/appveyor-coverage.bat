@@ -10,11 +10,13 @@ if "%PLATFORM%"=="x64" (
 	set OUTPUT_DIR=x64\%CONFIGURATION%
 )
 
+set TEMP_PLATFORM = %PLATFORM%
 set PLATFORM=
 
 :: Install AltCover
 nuget install altcover -OutputDirectory altcover -Version 1.6.230
 
+set PLATFORM = %TEMP_PLATFORM
 :: Instrument the test assemblies
 dotnet run^
  --project altcover\altcover.1.6.230\tools\netcoreapp2.0\AltCover\altcover.core.fsproj --configuration %CONFIGURATION% --^
