@@ -14,7 +14,7 @@ platform:
 before_build:
   - dotnet restore
   - ps: |
-      Write-Host $env:platform
+      Write-Output $env:platform
       $env:platform = ""
 build:
   
