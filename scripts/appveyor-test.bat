@@ -1,9 +1,8 @@
 @echo off
+set TEMP_PLATFORM="%PLATFORM%"
+set PLATFORM=
 
-if "%PLATFORM%"=="x86" (
-	"C:\Program Files (x86)\dotnet\dotnet.EXE" test --configuration %CONFIGURATION% --no-build AdvancedDLSupport.Tests
-  "C:\Program Files (x86)\dotnet\dotnet.EXE" test --configuration %CONFIGURATION% --no-build Mono.DllMap.Tests
-) else (
-  "C:\Program Files\dotnet\dotnet.EXE" test --configuration %CONFIGURATION% --no-build AdvancedDLSupport.Tests
-  "C:\Program Files\dotnet\dotnet.EXE" test --configuration %CONFIGURATION% --no-build Mono.DllMap.Tests
-)
+
+dotnet test --configuration %CONFIGURATION% --no-build AdvancedDLSupport.Tests
+dotnet test --configuration %CONFIGURATION% --no-build Mono.DllMap.Tests
+set PLATFORM="%TEMP_PLATFORM%"
