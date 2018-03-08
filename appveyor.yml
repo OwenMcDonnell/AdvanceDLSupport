@@ -3,7 +3,7 @@ init:
   - git config --global url."https://github.com/".insteadOf "git@github.com:"
 configuration: Debug
 before_build:
-  - ps: Write-host $env:platform
+  - ps: Write-output $env:platform
     
   - dotnet restore
 build:
