@@ -17,8 +17,8 @@ install:
     del $exePath
 
 platform:
-  #- x86
-  #- x64
+  - x86
+  - x64
   - Any CPU
 
 before_build:
@@ -30,7 +30,7 @@ build:
   parallel: true
   project: AdvanceDLSupport.sln
 before_test:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 test_script: scripts\appveyor-test.bat
 
 after_test:
