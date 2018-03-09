@@ -33,7 +33,7 @@ build:
 test_script: scripts\appveyor-test.bat
 
 after_test:
-  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - cmd: scripts\appveyor-coverage.bat
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
